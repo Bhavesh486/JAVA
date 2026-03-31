@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeAI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#" class="logo">
+        <span class="logo-icon" aria-hidden="true">
+          
+        </span>
+        <span class="logo-text">ResumeAI</span>
+      </a>
+      <nav class="main-nav">
+        <a href="#upload">Upload</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+      </nav>
+      <a href="#upload" class="btn btn-primary">Get Started Free</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="chip">Powered by Advanced AI - Java & Spring Boot Backend</p>
+        <h1>Analyze Your Resume<br /><span>with Artificial Intelligence</span></h1>
+        <p class="hero-sub">
+          Upload your resume and get instant, AI-powered feedback on skills,
+          keywords, ATS compatibility, and actionable improvement suggestions in seconds.
+        </p>
+        <div class="hero-actions">
+          <a href="#upload" class="btn btn-primary">Upload Resume Now</a>
+          <a href="#how-it-works" class="btn btn-dark">See How It Works</a>
+        </div>
+        <div class="stats">
+          <div class="stat">ATS Score <strong>92 / 100</strong></div>
+          <div class="stat">Analysis Time <strong>&lt; 5 sec</strong></div>
+          <div class="stat">Keyword Match <strong>87%</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2>Everything You Need to<br />Land the Job</h2>
+        <p class="section-sub">
+          Our Java-powered backend delivers deep resume intelligence in real time.
+        </p>
+        <div class="feature-grid">
+          <article class="card">
+            <h3>AI-Powered Parsing</h3>
+            <p>Java Spring Boot backend extracts and structures every detail from your resume.</p>
+          </article>
+          <article class="card">
+            <h3>ATS Compatibility Check</h3>
+            <p>Simulate how ATS platforms scan your resume and get a detailed compatibility score.</p>
+          </article>
+          <article class="card">
+            <h3>Keyword Optimization</h3>
+            <p>Match your resume against job descriptions and identify missing high-value keywords.</p>
+          </article>
+          <article class="card">
+            <h3>Skill Gap Analysis</h3>
+            <p>Discover which skills are in-demand for your target role and how to bridge the gap.</p>
+          </article>
+          <article class="card">
+            <h3>Smart Rewrite Engine</h3>
+            <p>Get AI-generated bullet point rewrites that improve clarity, impact, and action verbs.</p>
+          </article>
+          <article class="card">
+            <h3>Instant Results</h3>
+            <p>Receive your analysis in under 5 seconds with asynchronous Java API processing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="upload" class="section upload">
+      <div class="container">
+        <h2>Upload Your Resume</h2>
+        <p class="section-sub">Drag and drop or click to upload - our Java-powered AI engine does the rest.</p>
+        <div class="upload-box" id="upload-box">
+          <input id="resume-input" type="file" accept=".pdf,.doc,.docx,.txt" hidden />
+          <p class="upload-title">Drop your resume here</p>
+          <p class="upload-text">Supports PDF, DOC, DOCX, TXT formats • Max 10 MB</p>
+          <button class="btn btn-primary" type="button" id="browse-btn">Browse Files</button>
+        </div>
+        <div class="analysis-box" id="analysis-box" hidden>
+          <p><strong id="analysis-title">AI Engine Analyzing...</strong></p>
+          <p id="analysis-subtitle">Java backend processing your resume data via Spring Boot REST API</p>
+          <div class="progress"><span id="progress-bar"></span></div>
+          <div id="analysis-result"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section">
+      <div class="container narrow">
+        <h2>How It Works</h2>
+        <p class="section-sub">Four simple steps powered by our Java Spring Boot backend.</p>
+        <div class="timeline">
+          <div class="step">
+            <div class="dot">1</div>
+            <div>
+              <h3>Upload Your Resume</h3>
+              <p>Upload a PDF, DOCX, or plain text file. The file is securely sent to our Java REST endpoint.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot">2</div>
+            <div>
+              <h3>Java Backend Parses the Content</h3>
+              <p>Apache Tika and NLP pipelines extract skills, experience, education, and keywords.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot">3</div>
+            <div>
+              <h3>AI Engine Scores &amp; Analyzes</h3>
+              <p>Parsed data is scored against ATS rules and keyword libraries stored in PostgreSQL.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot">4</div>
+            <div>
+              <h3>Get Your Detailed Report</h3>
+              <p>Backend returns a structured report with scores, matched keywords, and suggestions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const apiBase = 'http://localhost:8080/api/resume/analyze';
+
+    const browseBtn = document.getElementById('browse-btn');
+    const fileInput = document.getElementById('resume-input');
+    const analysisBox = document.getElementById('analysis-box');
+    const analysisTitle = document.getElementById('analysis-title');
+    const analysisSubtitle = document.getElementById('analysis-subtitle');
+    const analysisResult = document.getElementById('analysis-result');
+    const progressBar = document.getElementById('progress-bar');
+
+    browseBtn.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+
+      analysisBox.hidden = false;
+      analysisTitle.textContent = 'AI Engine Analyzing...';
+      analysisSubtitle.textContent = 'Sending your resume securely to the Java backend.';
+      progressBar.style.width = '40%';
+      analysisResult.innerHTML = '';
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      fetch(apiBase, {
+        method: 'POST',
+        body: formData
+      })
+        .then(async (res) => {
+          if (!res.ok) {
+            const text = await res.text();
+            throw new Error(text || 'Request failed');
+          }
+          return res.json();
+        })
+        .then((data) => {
+          progressBar.style.width = '100%';
+          analysisTitle.textContent = `ATS Score: ${data.atsScore} / 100`;
+          analysisSubtitle.textContent = `Keyword match: ${data.keywordMatchPercent}% • Analysis time: ${data.analysisTimeMs} ms`;
+
+          const matched = (data.matchedKeywords || []).join(', ') || 'None detected';
+          const missing = (data.missingKeywords || []).join(', ') || 'None';
+          const suggestions = (data.suggestedImprovements || [])
+            .map((s) => `<li>${s}</li>`)
+            .join('');
+
+          analysisResult.innerHTML = `
+            <div class="analysis-grid">
+              <div>
+                <h4>Matched Keywords</h4>
+                <p>${matched}</p>
+              </div>
+              <div>
+                <h4>Missing Keywords</h4>
+                <p>${missing}</p>
+              </div>
+            </div>
+            <div class="analysis-suggestions">
+              <h4>Suggestions</h4>
+              <ul>${suggestions}</ul>
+            </div>
+          `;
+        })
+        .catch((err) => {
+          progressBar.style.width = '0%';
+          analysisTitle.textContent = 'Analysis failed';
+          analysisSubtitle.textContent = 'Could not analyze your resume. Please try again.';
+          analysisResult.textContent = err.message;
+        });
+    });
+  </script>
+</body>
+</html>
